@@ -1,0 +1,60 @@
+# Project Structure (following QuantCity conventions)
+
+src/
+├── components/
+│   ├── 20241222_QuantCity_SEC_Dashboard_v1.0.tsx
+│   ├── 20241222_QuantCity_SEC_FilingList_v1.0.tsx
+│   └── 20241222_QuantCity_SEC_FilingDetail_v1.0.tsx
+├── services/
+│   └── 20241222_QuantCity_SEC_DataService_v1.0.ts
+├── types/
+│   └── 20241222_QuantCity_SEC_Types_v1.0.ts
+└── utils/
+    └── 20241222_QuantCity_SEC_Helpers_v1.0.ts
+
+# Required configurations
+vite.config.ts:
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+      }
+    }
+  }
+})
+
+# Project dependencies (package.json)
+{
+  "name": "20241222_QuantCity_SEC_Frontend_v1.0",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@tanstack/react-query": "^5.0.0",
+    "date-fns": "^2.30.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2",
+    "typescript": "^5.0.0",
+    "vite": "^4.3.9"
+  }
+}
